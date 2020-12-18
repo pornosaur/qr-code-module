@@ -11,6 +11,8 @@
 #include <vector>
 #include <cstring>
 #include <CharacterSet.h>
+#include <fstream>
+#include <iostream>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
@@ -31,6 +33,19 @@ namespace qr {
             res.push_back((num_i >> 16) & 0xFF);
             res.push_back((num_i >> 24) & 0xFF);
         }
+
+        std::ofstream fout("hash1_data.dat", std::ios::out | std::ios::binary);
+        fout.write((char *)res.data(), res.size() * sizeof(res.front()));
+        fout.close();
+
+        std::ifstream instream("hash1_data.dat", std::ios::in | std::ios::binary);
+        std::vector<uint8_t> d((std::istreambuf_iterator<char>(instream)), std::istreambuf_iterator<char>());
+        std::cout << "BIN: \n";
+        for (auto a : d) {
+            std::cout << (int)a << "; ";
+        }
+        std::cout << "\n\n\n";
+
 
         std::wstring str;
         str.append(res.data(), res.data() + res.size());
