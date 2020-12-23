@@ -14,6 +14,8 @@ namespace qr {
     class QRDecoder {
     public:
         static std::vector<float> decode(const std::string &file_path);
+
+        static std::vector<float> decode_str(const std::string &qr_code);
     };
 
 }

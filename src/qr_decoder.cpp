@@ -26,6 +26,19 @@
 
 namespace qr {
 
+    std::vector<float> QRDecoder::decode_str(const std::string &qr_code) {
+        std::vector<float> data;
+        for (size_t i = 0; i < qr_code.size(); i += 4) {
+            uint32_t ele = qr_code[i] | (qr_code[i + 1] << 8) | (qr_code[i + 2] << 16) | (qr_code[i + 3] << 24);
+
+            float final = 0;
+            std::memcpy(&final, &ele, sizeof(float));
+            data.push_back(final);
+        }
+
+        return data;
+    }
+
     std::vector<float> QRDecoder::decode(const std::string &file_path) {
         int width, height, channels;
         std::unique_ptr<stbi_uc, void (*)(void *)> buffer(

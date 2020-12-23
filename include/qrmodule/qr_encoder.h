@@ -22,6 +22,8 @@ namespace qr {
         static std::vector<uint8_t> encode(const float *data, size_t length);
 
         static bool encode(const std::string &file_path, const float *data, size_t length);
+
+        static std::vector<uint8_t> encode_to_png(const float *data, size_t length);
     };
 
 }

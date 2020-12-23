@@ -15,6 +15,7 @@ set(SRC_FILES
 set(INCLUDE include/qrmodule/qr_decoder.h
         include/qrmodule/qr_encoder.h
         include/qrmodule/image_view.h
+        include/qrmodule/base64.h
         )
 
 include_directories(include)
